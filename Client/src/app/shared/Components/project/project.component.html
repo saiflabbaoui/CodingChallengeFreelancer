@@ -1,0 +1,107 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header row">
+            <div class="col-md-6"><h4 class="card-title">Projects List</h4></div>
+            <div class="col-md-3">
+                <form [formGroup]="projectForm">
+                    <div class="input-group no-border">
+                      <input type="text" formControlName="" class="form-control" formControlName="searchInput" placeholder="Search...">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="now-ui-icons ui-1_zoom-bold"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+            </div>  
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" style="margin: -3px 1px;" (click)="openAddDialog(content)" >
+                   Add Project
+                </button>
+            </div> 
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Duration</th>
+                <th>Type</th>
+                <th></th>
+              </thead>
+              <tbody>
+                <tr *ngFor ="let p of filtredProject">
+                  <td>{{p.name}}</td>
+                  <td>{{p.startDate | date}}</td>
+                  <td>{{p.endDate| date}}</td>
+                  <td >{{p.duration}}</td>
+                  <td>{{p.type}}</td>
+                  <td class="row">
+                    <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Project" (click)="editProject(content, p.id, p)">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                      </button>
+                      <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="delete Project" (click)="deleteProject(p.id, p)">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+    <div style="margin: 30px 40px;">
+    <form [formGroup]="addForm">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Project Name</label>
+              <input type="text" class="form-control" placeholder="Project Name" formControlName="name">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="date" class="form-control"  formControlName="startDate">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>End Date</label>
+              <input type="date" class="form-control"  formControlName="endDate">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Duration</label>
+              <input disabled type="text" class="form-control" formControlName="duration">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Type</label>
+              <select formControlName="type" class="custom-select" id="inputGroupSelect01">
+                <option value="Web">Web</option>
+                <option value="Mobile">Mobile</option>
+                <option value="Both">Both</option>
+              </select>
+            </div>  
+          </div>
+        </div>
+        <div></div>
+        <button class="btn btn-primary btn-block" style="margin: -3px 1px;" (click)="addProject()" >
+            {{editMode ? 'Edit' : 'Add'}} 
+         </button>
+      </form>
+    </div>
+  </ng-template>

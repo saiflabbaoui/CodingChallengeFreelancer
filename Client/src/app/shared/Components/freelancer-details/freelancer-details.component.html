@@ -1,0 +1,72 @@
+<div class="panel-header panel-header-sm">
+</div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Freelancer Details</h5>
+        </div>
+        <form style="margin: 20px;">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Freelancer Name</label>
+                  <input disabled type="text" class="form-control" placeholder="Freelancer Name" value="{{freelancer.name}}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input disabled type="email" class="form-control" placeholder="Email" value="{{freelancer.email}}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input disabled type="number" class="form-control" placeholder="Phone Number" value="{{freelancer.phoneNumber}}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Adress</label>
+                  <input disabled  type="text" class="form-control" placeholder="Adress" value="{{freelancer.address}}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Website</label>
+                  <input disabled type="text" class="form-control" placeholder="Website" value="{{freelancer.website}}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>My Projects</label>
+                  <div *ngFor='let p of freelancer.project'>
+                  <input disabled type="text" class="form-control" placeholder="Website" value="{{p.name}}">
+                </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Add Projects</label>
+                  <div>
+                    <select name="cars" id="cars" multiple="multiple" [(ngModel)]="selectedP">
+                        <option *ngFor="let p of projects"  value="{{p.id}}">{{p ? p.name : null}}</option>
+                      </select>
+                      <button style="padding-top: 5px;" class="btn btn-primary btn-block" style="margin: -3px 1px;" (click)="addProjectToFreelancer()" >
+                        Associate projects
+                     </button>
+                </div>
+                </div>
+              </div>
+              
+
+            </div>
+            <div></div>
+            
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

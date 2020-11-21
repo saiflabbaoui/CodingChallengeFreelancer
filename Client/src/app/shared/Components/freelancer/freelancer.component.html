@@ -1,0 +1,99 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header row">
+            <div class="col-md-6"><h4 class="card-title">Freelancers List</h4></div>
+            <div class="col-md-3">
+                <form [formGroup]="FreelancerForm">
+                    <div class="input-group no-border">
+                      <input type="text" formControlName="" class="form-control" formControlName="searchInput" placeholder="Search...">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <i class="now-ui-icons ui-1_zoom-bold"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+            </div>  
+            <div class="col-md-3">
+                <button class="btn btn-primary btn-block" style="margin: -3px 1px;" (click)="openAddDialog(content)" >
+                   Add Freelancer
+                </button>
+            </div> 
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Adress</th>
+                <th>Website</th>
+              </thead>
+              <tbody>
+                <tr *ngFor ="let f of filtredFreelancers">
+                  <td>{{f.name}}</td>
+                  <td>{{f.email }}</td>
+                  <td>{{f.phoneNumber}}</td>
+                  <td >{{f.address}}</td>
+                  <td>{{f.website}}</td>
+                  <td>
+                    <button class="btn btn-info btn-block" style="margin: -3px 1px;" (click)="navigateToDetails(f.id)" >
+                        Details
+                     </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+    <div style="margin: 30px 40px;">
+    <form [formGroup]="addForm">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Freelancer Name</label>
+              <input type="text" class="form-control" placeholder="Freelancer Name" formControlName="name">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" placeholder="Email" formControlName="email">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="number" class="form-control" placeholder="Phone Number" formControlName="phoneNumber">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Adress</label>
+              <input  type="text" class="form-control" placeholder="Adress" formControlName="adress">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Website</label>
+              <input  type="text" class="form-control" placeholder="Website" formControlName="website">
+            </div>
+          </div>
+        </div>
+        <div></div>
+        <button class="btn btn-primary btn-block" style="margin: -3px 1px;" (click)="addFreelancer()" >
+            Add
+         </button>
+      </form>
+    </div>
+  </ng-template>
